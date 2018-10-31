@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TestAjax.Models.Book>
+
+
+<div id="searchresult">
+    <h3>Все книги автора @Model.First().Author</h3>
+
+    <ul>
+       @foreach (var b in Model)
+       {
+           <li>@b.Name</li>
+       }
+    </ul>
+
+</div>
