@@ -13,6 +13,7 @@ namespace TestAjax.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Authors = db.Books.Select(a => a.Author).Distinct();
             return View();
         }
 
@@ -27,6 +28,12 @@ namespace TestAjax.Controllers
                 return HttpNotFound();
             }
             return PartialView(allBooks);
+        }
+
+        public ActionResult Bestbook()
+        {
+            Book book = db.Books.First();
+            return PartialView(book);
         }
 
         public ActionResult About()

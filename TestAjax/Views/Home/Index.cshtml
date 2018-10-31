@@ -12,17 +12,37 @@
 </script>
 
 <div>
-    @using (Ajax.BeginForm("SearchBooks", new AjaxOptions { UpdateTargetId = "results", LoadingElementId = "loading", LoadingElementDuration = 1000,
+    @using (Ajax.BeginForm("SearchBooks", new AjaxOptions
+    {
+        UpdateTargetId = "results",
+        LoadingElementId = "loading",
+        LoadingElementDuration = 1000,
         Confirm = "Ну что)), выполнить AJAX-запрос?",
         OnBegin = "OnBegin",
-        OnSuccess  = "OnSuccess"
+        OnSuccess = "OnSuccess"
     }))
     {
         <input type="text" name="name" />
         <input type="submit" value="Поиск" />
     }
-        <img id="loading" src="@Url.Content("~/Content/Images/loader.gif")" style="display:none" />
+    <img id="loading" src="@Url.Content("~/Content/Images/loader.gif")" style="display:none" />
     <div id="results"></div>
+
+    <br />
+
+    <div id="results"></div>
+    <br />
+    @foreach (string s in ViewBag.Authors)
+    {
+        <div style="margin-right:8px;float:left;">
+            @Ajax.ActionLink(s, "SearchBooks", new { name = s }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "results" })
+        </div>
+    }
+
+    <br />
+</div>
+<div id="bestbook">
+    @Ajax.ActionLink("Лучшая книга",  "Bestbook",  new AjaxOptions {UpdateTargetId = "bestbook" } )
 </div>
 @Scripts.Render("~/scripts/jquery-3.3.1.min.js")
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")

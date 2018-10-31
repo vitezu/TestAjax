@@ -19,7 +19,7 @@ namespace TestAjax.Models
         {
             db.Books.Add(new Book { Name = "Война и мир", Author = "Толстой", Price = 434 });
             db.Books.Add(new Book { Name = "Война", Author = "Толстой", Price = 4 });
-            db.Books.Add(new Book { Name = "Три толстяка", Author = "Толстой", Price = 44 });
+            db.Books.Add(new Book { Name = "Очки", Author = "Чехов", Price = 44 });
             base.Seed(db);
         }
     }
