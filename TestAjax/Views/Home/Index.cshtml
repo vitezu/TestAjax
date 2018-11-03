@@ -9,6 +9,14 @@
     function OnSuccess(data) {
         alert("Запрос выполнен успешно. Получены следующие данные: \n" + data);
     }
+
+    function OnSuc(data) {
+        var results = $('#res');
+        results.empty();
+        for (var i = 0; i < data.length; i++) {
+            results.append('<li>' + data[i].Name + '</li>');
+        }
+    }
 </script>
 
 <div>
@@ -44,6 +52,18 @@
 <div id="bestbook">
     @Ajax.ActionLink("Лучшая книга",  "Bestbook",  new AjaxOptions {UpdateTargetId = "bestbook" } )
 </div>
+
+<div>
+    @using (Ajax.BeginForm("JsonSearch", new AjaxOptions { OnSuccess = "OnSuc" }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Json Поиск" />
+    }
+
+
+</div>
+<div id="res"></div>
+
 @Scripts.Render("~/scripts/jquery-3.3.1.min.js")
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 

@@ -17,6 +17,11 @@ namespace TestAjax.Controllers
             return View();
         }
 
+        public JsonResult JsonSearch (string name)
+        {
+            var data = db.Books.Where(b => b.Author == name).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
 
         [HttpPost]
